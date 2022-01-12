@@ -1,21 +1,11 @@
 import { createStore } from "redux";
+import { createAction } from "@reduxjs/toolkit";
 
 const ADD = "ADD";
 const DELETE = "DELETE";
 
-export const addToDo = (text) => {
-  return {
-    type: ADD,
-    text,
-  };
-};
-
-export const deleteToDo = (id) => {
-  return {
-    type: DELETE,
-    id,
-  };
-};
+const addToDo = createAction("ADD");
+const deleteToDo = createAction("DELETE");
 
 const reducer = (state = [], action) => {
   switch (action.type) {
@@ -30,6 +20,9 @@ const reducer = (state = [], action) => {
 
 const store = createStore(reducer);
 
-store.subscribe();
+export const actionCreators = {
+  addToDo,
+  deleteToDo,
+};
 
 export default store;
